@@ -1,4 +1,4 @@
-package com.example.demo.CategoryService;
+package com.example.demo.Service;
 
 import com.example.demo.dataobject.ProductCategory;
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CategoryService {
 
-    ProductCategory findById (Integer categoryId);
+    ProductCategory findOne (Integer categoryId);
 
     List<ProductCategory> findAll();
 

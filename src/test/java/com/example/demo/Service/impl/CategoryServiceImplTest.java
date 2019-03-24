@@ -1,27 +1,26 @@
-package com.example.demo.CategoryService.impl;
+package com.example.demo.Service.impl;
 
 import com.example.demo.dataobject.ProductCategory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CategoryServiceImplTest {
-
+    @Autowired
     private CategoryServiceImpl categoryService;
 
     @Test
-    public void findById() {
+    public void findOne() {
 
-        ProductCategory productCategory = categoryService.findById(1);
+        ProductCategory productCategory = categoryService.findOne(1);
 //
         Assert.assertEquals(new Integer(1),productCategory.getCategoryId());
 
@@ -32,7 +31,7 @@ public class CategoryServiceImplTest {
 
     List<ProductCategory> list = categoryService.findAll();
 
-    Assert.assertEquals(0,list.size());
+    Assert.assertNotEquals(0,list.size());
 
     }
 
@@ -41,11 +40,20 @@ public class CategoryServiceImplTest {
 
         List list = Arrays.asList(1,2,3,4,5,6);
 
-//        ProductCategory productCategory = categoryService.findByCategoryTypeIn(list);
+        List<ProductCategory> result = categoryService.findByCategoryTypeIn(list);
+
+        Assert.assertNotEquals(0,result.size());
     }
 
     @Test
     public void save() {
-//        save
+
+        ProductCategory productCategory = categoryService.save(new ProductCategory("男生专享",4));
+
+        ProductCategory result = categoryService.save(productCategory);
+
+//        Assert.assertNotEquals(null,result);
+        Assert.assertNotNull(result);
+
     }
 }

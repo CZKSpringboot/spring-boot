@@ -1,12 +1,11 @@
-package com.example.demo.CategoryService.impl;
+package com.example.demo.Service.impl;
 
-import com.example.demo.CategoryService.CategoryService;
+import com.example.demo.Service.CategoryService;
 import com.example.demo.dataobject.ProductCategory;
 import com.example.demo.repository.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 /* @Service用于标注业务层组件 */
 @Service
@@ -18,11 +17,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
 //    @PostConstruct
-    public ProductCategory findById(Integer categoryId) {
+    public ProductCategory findOne(Integer categoryId) {
 
-        System.out.println("CategoryId:"+ categoryId);
+        /**
+         * 查不到返回null
+         * .get 抛异常
+         */
+        return  repository.findById(categoryId).orElse(null);
 
-        return  repository.findById(categoryId).get();
     }
 
     @Override
@@ -37,6 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public ProductCategory save(ProductCategory productCategory) {
+
         return repository.save(productCategory);
     }
 }
