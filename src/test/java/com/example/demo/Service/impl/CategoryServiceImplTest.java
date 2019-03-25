@@ -38,7 +38,7 @@ public class CategoryServiceImplTest {
     @Test
     public void findByCategoryTypeIn() {
 
-        List list = Arrays.asList(1,2,3,4,5,6);
+        List list = Arrays.asList(1,2);
 
         List<ProductCategory> result = categoryService.findByCategoryTypeIn(list);
 

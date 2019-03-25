@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum ProductStatusEnum {
 
     Up(0, "上架"),
-    Down(1, "下架");;
+    Down(1, "下架");
 
     private Integer code;
 
